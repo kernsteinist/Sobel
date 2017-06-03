@@ -14,7 +14,6 @@ using System.Windows.Forms;
 namespace BMP
 {
     
-
     public partial class Form1 : Form
     {
 
@@ -32,14 +31,6 @@ namespace BMP
 
         public byte[,] pixArray;
         public byte[,] paddingArray;
-       
-
-
-   //     int[,] sobel_x = { { -1,0,-1}, { -2,0,2}, { -1, 0, 1 } };
-   //   int[,] sobel_y = { { 1, 2, 1 }, { 0, 0, 0 }, { -1, -2, -1 } };
-
-
-        
 
         public Form1()
         {
@@ -70,12 +61,6 @@ namespace BMP
             
             return ret;
      }
-
-
-        
-        
-        
-        
 
 
        byte [,] sobeloperation(byte [,] pxArray){
@@ -213,27 +198,21 @@ namespace BMP
         {
 
             
-            fs = new FileStream(txtFile.Text, FileMode.Open, FileAccess.Read); // bmp dosyayı stream olarak al
-            BinaryReader br = new BinaryReader(fs); // bmp dosyayı binary reader ile binary olarak oku
+            fs = new FileStream(txtFile.Text, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs); 
 
-            fs.Seek(0, SeekOrigin.Begin);  signature = br.ReadBytes(2); // file offseti sıfıra setle ve 2 byte oku
-
-            fs.Seek(2, SeekOrigin.Begin);  sizefile = br.ReadBytes(4); // dosyanın boyutunu oku
-
-            fs.Seek(10, SeekOrigin.Begin); origo = br.ReadBytes(4); // piksellerin başlangıc değerini offset olarak al
-
-            fs.Seek(18, SeekOrigin.Begin); widtharray = br.ReadBytes(4); // genişliği oku
-
-            fs.Seek(22, SeekOrigin.Begin); heightarray = br.ReadBytes(4); // yüksekliği oku
-
-            fs.Seek(34, SeekOrigin.Begin); sizedata = br.ReadBytes(4); // imgenin boyutunu oku
+            fs.Seek(0, SeekOrigin.Begin);  signature = br.ReadBytes(2); 
+            fs.Seek(2, SeekOrigin.Begin);  sizefile = br.ReadBytes(4); 
+            fs.Seek(10, SeekOrigin.Begin); origo = br.ReadBytes(4); 
+            fs.Seek(18, SeekOrigin.Begin); widtharray = br.ReadBytes(4); 
+            fs.Seek(22, SeekOrigin.Begin); heightarray = br.ReadBytes(4); 
+            fs.Seek(34, SeekOrigin.Begin); sizedata = br.ReadBytes(4); 
 
             height = BitConverter.ToInt32(heightarray, 0);
             width = BitConverter.ToInt32(widtharray, 0);
 
 
             int siz_file = BitConverter.ToInt32(sizefile, 0);
-
             lblsignature.Text = tostr(signature, 0);
             lblsizefile.Text = BitConverter.ToInt32(sizefile, 0).ToString() + " bytes";
             lblwidth.Text = width.ToString();
@@ -270,13 +249,10 @@ namespace BMP
             
             var data = bitmap.LockBits(new Rectangle(Point.Empty, bitmap.Size), ImageLockMode.ReadWrite,PixelFormat.Format24bppRgb);
             Marshal.Copy(result, 0, data.Scan0,witttiuu.Length); 
-            // pix adlı tek boyutlu piksel dizisini bmp dosyasının data.scan0 adresinden başlayarak kopyala 
             bitmap.UnlockBits(data);
 
 
-            
-            
-            pictureBox1.Image = bitmap;
+             pictureBox1.Image = bitmap;
 
         }
       
