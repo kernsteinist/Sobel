@@ -127,7 +127,7 @@ namespace BMP
                     pixArray[h,w]=src[j++];                                 
                     }
                 while (p < padding)
-                    paddingArray[h, p++] = src[j++]; // get out of here padding.. 
+                    paddingArray[h, p++] = src[j++]; 
                }
      }
 
@@ -235,7 +235,7 @@ namespace BMP
 
             pixArray     = new byte[height, width*3];
             paddingArray = new byte[height, padding];
-            byte[] witttiuu = br.ReadBytes(height*rowsizewithpadding);      // ilk pikselden son piksele kadar oku ve resmin piksellerini tek boyutlu diziye at          
+            byte[] witttiuu = br.ReadBytes(height*rowsizewithpadding);                
 
             fill_pixArray_paddingArray(witttiuu);
             byte [,] grayimage=tograyscale(pixArray);
@@ -245,7 +245,7 @@ namespace BMP
 
             
 
-            var bitmap = new Bitmap(width, height); // bbitmap nesnesi oluştur
+            var bitmap = new Bitmap(width, height); 
             
             var data = bitmap.LockBits(new Rectangle(Point.Empty, bitmap.Size), ImageLockMode.ReadWrite,PixelFormat.Format24bppRgb);
             Marshal.Copy(result, 0, data.Scan0,witttiuu.Length); 
