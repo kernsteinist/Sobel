@@ -1,3 +1,3 @@
 # image-processing
 
-C#.NET Sobel operator implementation 
+C#.NET Sobel operator implementation d
